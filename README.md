@@ -44,7 +44,4 @@ This can be improved, pull requests more than welcome!
 * define more colors
 * create more templates for common formats
 * add more output sizes
-* currently the same extension can be associated with multiple mime types
-  (eg. .doc) this makes it hard to know for which mime type to configure,
-  maybe provide a cleaned up mime.type file
-
+* restructure common formats for easier configuration (made up mime types)
