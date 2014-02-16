@@ -342,10 +342,11 @@ class FileIconBuilder {
 
         $lines = file($this->mimefile);
         foreach($lines as $line) {
-            $exts = preg_split('/\s/', $line);
+            $exts = preg_split('/\s+/', $line);
             $mime = array_shift($exts);
             if(!$exts) continue;
             foreach($exts as $ext) {
+                if(empty($ext)) continue;
                 if(strlen($ext) > 4) continue; // we only handle 4 chars or less
                 $this->mimetypes[$ext] = $mime;
             }
