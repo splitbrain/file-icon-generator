@@ -22,6 +22,9 @@ source code comments. It's relatively straight forward.
 MIME matching
 -------------
 
+Color and template files are first matched against a ```extension-<ext>```
+entry. If that is not found the mime type is matched.
+
 For matching mime types in color and template setup the mime type of an extension
 is broken up parts at the charcters ```/```, ```.``` and ```-``` and connected
 with a ```-``` again.

@@ -37,11 +37,24 @@ class FileIconBuilder {
             'application-x-gtar' => '#996600',
             'application-x-bzip2' => '#996600',
             'application-x-7z' => '#996600',
+            'extension-bz2' => '#996600',
+            'extension-tar' => '#996600',
+            'extension-tbz' => '#996600',
+            'extension-tgz' => '#996600',
+            'extension-rar' => '#996600',
+            'extension-7z' => '#996600',
+            'extension-gz' => '#996600',
+            'extension-rpm' => '#996600',
+            'extension-deb' => '#996600',
 
             // office docs
             'application-vnd-ms' =>  '#009999',
             'application-msword' =>  '#009999',
+            'application-msexcel' =>  '#009999',
+            'application-mspowerpoint' =>  '#009999',
+            'application-vnd-openxmlformats-officedocument' => '#009999',
             'application-vnd-oasis-opendocument' =>  '#009999',
+            'application-soffice' =>  '#009999',
         );
     }
 
@@ -233,9 +246,13 @@ class FileIconBuilder {
      * @return array RGB integers as array
      */
     protected function ext2color($ext) {
-        if(!$this->mimetypes) $this->loadmimetypes();
+        // try to match extension first
+        if(isset($this->colors["extension-$ext"])) {
+            return $this->hex2rgb($this->colors["extension-$ext"]);
+        }
 
         // find the mimetype
+        if(!$this->mimetypes) $this->loadmimetypes();
         if(isset($this->mimetypes[$ext])) {
             $mime = $this->mimetypes[$ext];
         } else {
@@ -263,9 +280,13 @@ class FileIconBuilder {
      * @return string the template file
      */
     protected function ext2template($ext, $size) {
-        if(!$this->mimetypes) $this->loadmimetypes();
+        // try to match extension first
+        if(file_exists($this->templatedir."$size/extension-$ext.png")) {
+            return $this->templatedir."$size/extension-$ext.png";
+        }
 
         // find the mimetype
+        if(!$this->mimetypes) $this->loadmimetypes();
         if(isset($this->mimetypes[$ext])) {
             $mime = $this->mimetypes[$ext];
         } else {
