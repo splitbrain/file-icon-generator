@@ -31,6 +31,7 @@ class FileIconBuilder {
      * @param string $outdir directory to otput the files to
      */
     public function createAll($outdir) {
+        if(!$this->mimetypes) $this->loadmimetypes();
         mkdir("$outdir/16x16");
 
         foreach(array_keys($this->mimetypes) as $ext) {
@@ -85,10 +86,16 @@ class FileIconBuilder {
             }
         }
 
+        // calculate offset for centered text
+        $bbox  = imagettfbbox(6.0, 0, $this->fontdir.'pf_tempesta_five_compressed.ttf', strtoupper($ext));
+        $width  = $bbox[2];
+        $offset = floor(($right - ($left+1) - $width)/2.0);
+        if($offset < ($left+1)) $offset = ($left+1);
+
         // write text
         $c = imagecolorallocate($im, 255, 255, 255);
-        imagettftext($im, 6.0, 0, 1, 13, -1 * $c,
-                     $this->fontdir.'pf_tempesta_five_condensed.ttf',
+        imagettftext($im, 6.0, 0, $offset, $bottom, -1 * $c,
+                     $this->fontdir.'pf_tempesta_five_compressed.ttf',
                      strtoupper($ext));
 
         imagepng($im, $out, 9);
@@ -148,9 +155,9 @@ class FileIconBuilder {
 
         // calc rgb
         return array(
-           'r' => hexdec(substr($hex, 0, 2)),
-           'g' => hexdec(substr($hex, 2, 2)),
-           'b' => hexdec(substr($hex, 4, 2))
+           hexdec(substr($hex, 0, 2)),
+           hexdec(substr($hex, 2, 2)),
+           hexdec(substr($hex, 4, 2))
         );
     }
 
