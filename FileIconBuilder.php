@@ -23,38 +23,27 @@ class FileIconBuilder {
         $this->fontdir     = __DIR__.'/fonts/';
         $this->mimefile    = __DIR__.'/mime.types';
 
+
+
         // default colors, additions welcome
         $this->colors = array(
+            // used if nothing matches
+            ''            => '#33333',
+
             // basic mime types
-            'image'       => '#000099',
+            'image'       => '#999900',
             'video'       => '#990099',
             'audio'       => '#009900',
             'text'        => '#999999',
             'application' => '#990000',
+            'chemical'    => '#009999',
 
-            // packages
-            'application-zip' => '#996600',
-            'application-x-gtar' => '#996600',
-            'application-x-bzip2' => '#996600',
-            'application-x-7z' => '#996600',
-            'extension-bz2' => '#996600',
-            'extension-tar' => '#996600',
-            'extension-tbz' => '#996600',
-            'extension-tgz' => '#996600',
-            'extension-rar' => '#996600',
-            'extension-7z' => '#996600',
-            'extension-gz' => '#996600',
-            'extension-rpm' => '#996600',
-            'extension-deb' => '#996600',
-
-            // office docs
-            'application-vnd-ms' =>  '#009999',
-            'application-msword' =>  '#009999',
-            'application-msexcel' =>  '#009999',
-            'application-mspowerpoint' =>  '#009999',
-            'application-vnd-openxmlformats-officedocument' => '#009999',
-            'application-vnd-oasis-opendocument' =>  '#009999',
-            'application-soffice' =>  '#009999',
+            // self defined types
+            'package'           => '#996600',
+            'geo'               => '#99CC00',
+            'document-office'   => '#000099',
+            'document-print'    => '#666666',
+            'text-code'         => '#CC6699',
         );
     }
 
@@ -269,7 +258,7 @@ class FileIconBuilder {
             array_pop($mime);
         }
 
-        return $this->hex2rgb('#333333');
+        return $this->hex2rgb($this->colors['']);
     }
 
     /**
@@ -342,6 +331,11 @@ class FileIconBuilder {
 
         $lines = file($this->mimefile);
         foreach($lines as $line) {
+            // skip comments
+            $line = preg_replace('/#.*$/', '', $line);
+            $line = trim($line);
+            if($line === '') continue;
+
             $exts = preg_split('/\s+/', $line);
             $mime = array_shift($exts);
             if(!$exts) continue;

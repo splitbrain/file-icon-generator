@@ -44,4 +44,3 @@ This can be improved, pull requests more than welcome!
 * define more colors
 * create more templates for common formats
 * add more output sizes
-* restructure common formats for easier configuration (made up mime types)
