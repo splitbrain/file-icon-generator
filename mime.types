@@ -94,6 +94,10 @@ text/code-html                                                                  
 text/code-css                                                                          css
 text/code-javascript                                                                   js
 text/code-json                                                                         json
+text/code-csharp                                                                       cs
+text/code-ruby                                                                         rb
+text/code-php                                                                          php
+text/code-lua                                                                          lua
 
 #
 # original mime types follow
@@ -521,7 +525,6 @@ application/x-qgis                                                              
 application/x-quicktimeplayer                                                          qtl
 application/x-rdp                                                                      rdp
 application/x-research-info-systems                                                    ris
-application/x-ruby                                                                     rb
 application/x-scilab                                                                   sce sci
 application/x-scilab-xcos                                                              xcos
 application/x-sha1                                                                     sha1
@@ -529,7 +532,7 @@ application/x-shar                                                              
 application/x-shockwave-flash                                                          swf swfl
 application/x-silverlight                                                              scr
 application/x-silverlight-app                                                          xap
-application/x-sql                                                                      sql
+text/sql                                                                               sql
 application/x-t3vm-image                                                               t3
 application/x-tex-gf                                                                   gf
 application/x-tex-pk                                                                   pk

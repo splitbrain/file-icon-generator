@@ -27,23 +27,23 @@ $extensions = array(
     'html', 'htm', 'txt', 'conf', 'xml', 'csv',
     // these might be used in downloadable code blocks:
     'c', 'cc', 'cpp', 'h', 'hpp', 'csh', 'diff', 'java', 'pas',
-    'pl', 'py', 'sh', 'bash', 'asm', 'htm', 'css', 'js', 'json'
+    'pl', 'py', 'sh', 'bash', 'asm', 'htm', 'css', 'js', 'json',
+    'cs', 'lua', 'php', 'rb', 'sql'
 );
 
 // generate all the icons
-@mkdir('16x16');
 @mkdir('32x32');
 
 $DFIB = new FileIconBuilder();
 foreach($extensions as $ext) {
     echo "$ext\n";
-    $DFIB->create16x16($ext,"16x16/$ext.png");
+    $DFIB->create16x16($ext,"$ext.png");
     $DFIB->create32x32($ext,"32x32/$ext.png");
 }
 
-copy("16x16/jpg.png", "16x16/jpeg.png");
+copy("jpg.png", "jpeg.png");
 copy("32x32/jpg.png", "32x32/jpeg.png");
 
-copy("16x16/htm.png", "16x16/html.png");
+copy("htm.png", "html.png");
 copy("32x32/htm.png", "32x32/html.png");
 

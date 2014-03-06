@@ -41,9 +41,9 @@ class FileIconBuilder {
             // self defined types
             'package'           => '#996600',
             'geo'               => '#99CC00',
-            'document-office'   => '#000099',
+            'document-office'   => '#6600FF',
             'document-print'    => '#666666',
-            'text-code'         => '#CC6699',
+            'text-code'         => '#336699',
         );
     }
 
